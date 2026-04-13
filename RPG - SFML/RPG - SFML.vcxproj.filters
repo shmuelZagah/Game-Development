@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="States">
+      <UniqueIdentifier>{c2c1a9eb-7ee6-4c7a-b7ee-fe39be25904d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities">
+      <UniqueIdentifier>{4f70901f-f416-4766-b28a-0491880e9036}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{5e679b3c-4f46-4df4-a80b-b9024a7ffdc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Input">
+      <UniqueIdentifier>{934be6c0-f20c-42d7-9654-c36fe2391612}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\h">
+      <UniqueIdentifier>{04d1b5fb-32d4-4496-962f-7b51715d4853}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\cpp">
+      <UniqueIdentifier>{5cdfa9d8-9993-408c-9aba-f33c35026730}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{6269b61a-0879-48f2-801d-341b5e56f09e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\objects">
+      <UniqueIdentifier>{44ed2eac-32a9-4f81-99e9-f10245fb0ed8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\other">
+      <UniqueIdentifier>{589910b2-c646-42ac-b823-8e2565930fb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\objects\button">
+      <UniqueIdentifier>{da33c749-5c82-4381-9081-32542b5dacbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\objects\Lists">
+      <UniqueIdentifier>{4e6673b1-ff2a-4cf9-bb61-5bcae37a7163}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\objects\Lists\dropDownList">
+      <UniqueIdentifier>{aa1582a2-3995-4d97-8f22-22f7bbcfcd32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\objects\Lists\CarouselList">
+      <UniqueIdentifier>{cf784087-3030-4b41-98fe-5b43e9dbd949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\objects\button\textButton">
+      <UniqueIdentifier>{0baa778c-aa5c-4d8a-9095-c102acf6cd52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\objects\button\arrowButton">
+      <UniqueIdentifier>{6c7c262c-97ec-45d7-a6a7-a27e0502a630}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{365927ab-9199-47c0-b8b2-9cc47e95d075}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\TileMap">
+      <UniqueIdentifier>{66f9fc4a-80c8-4366-989e-fe01a9e31317}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\objects\Lists\menuHoldList">
+      <UniqueIdentifier>{8fa1a198-51bc-4ff5-b90b-0fe6cbb3e51d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\objects\windows">
+      <UniqueIdentifier>{a5586a8f-6f6c-4ac9-9740-58f2a14fe616}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Tile">
+      <UniqueIdentifier>{31df8613-c52f-4468-b9d4-f9c2474aab65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\objects\windows\PauseMenu">
+      <UniqueIdentifier>{dc2aeee3-02b3-4c11-9f1f-b39a8db748c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\objects\windows\OptionMenu">
+      <UniqueIdentifier>{33652280-0a3e-4e71-bcce-f157cb962534}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Entities\Base">
+      <UniqueIdentifier>{7c93d358-1b56-4b26-bc8a-8056a0a0ddaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Player">
+      <UniqueIdentifier>{e9bb64fe-3a0d-46fa-b075-ce39e47ba2b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Enemy">
+      <UniqueIdentifier>{2dbda449-f277-48d8-a0b3-b0f113c69d79}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="RPG - SFML.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="EditorState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>Resource Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationComponent.cpp">
+      <Filter>Component\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="DriveComponent.cpp">
+      <Filter>Component\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="HitboxComponent.cpp">
+      <Filter>Component\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Component\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="RotationComponent.cpp">
+      <Filter>Component\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpFunction.cpp">
+      <Filter>GUI\other</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>GUI\objects\button</Filter>
+    </ClCompile>
+    <ClCompile Include="DropDownList.cpp">
+      <Filter>GUI\objects\Lists\dropDownList</Filter>
+    </ClCompile>
+    <ClCompile Include="CarouselList.cpp">
+      <Filter>GUI\objects\Lists\CarouselList</Filter>
+    </ClCompile>
+    <ClCompile Include="Lists.cpp">
+      <Filter>GUI\objects\Lists</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonText.cpp">
+      <Filter>GUI\objects\button\textButton</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonArrow.cpp">
+      <Filter>GUI\objects\button\arrowButton</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>GUI\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>Map\TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.h.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonColor.cpp">
+      <Filter>GUI\objects\button</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Keybord.cpp">
+      <Filter>Resource Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="menuHoldList.cpp">
+      <Filter>GUI\objects\Lists\menuHoldList</Filter>
+    </ClCompile>
+    <ClCompile Include="CarouselListTexture.cpp">
+      <Filter>GUI\objects\Lists\CarouselList</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerManager.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseMenu.cpp">
+      <Filter>GUI\objects\windows\PauseMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionMenu.cpp">
+      <Filter>GUI\objects\windows\OptionMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthComponent.cpp">
+      <Filter>Component\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageComponent.cpp">
+      <Filter>Component\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Entities\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Entities\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Entities\Enemy</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="EditorState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>Resource Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationComponent.h">
+      <Filter>Component\h</Filter>
+    </ClInclude>
+    <ClInclude Include="DriveComponent.h">
+      <Filter>Component\h</Filter>
+    </ClInclude>
+    <ClInclude Include="HitboxComponent.h">
+      <Filter>Component\h</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementComponent.h">
+      <Filter>Component\h</Filter>
+    </ClInclude>
+    <ClInclude Include="RotationComponent.h">
+      <Filter>Component\h</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="HelpFunction.h">
+      <Filter>GUI\other</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>GUI\objects\button</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorEditor.h">
+      <Filter>GUI\objects\button</Filter>
+    </ClInclude>
+    <ClInclude Include="DropDownList.h">
+      <Filter>GUI\objects\Lists\dropDownList</Filter>
+    </ClInclude>
+    <ClInclude Include="CarouselList.h">
+      <Filter>GUI\objects\Lists\CarouselList</Filter>
+    </ClInclude>
+    <ClInclude Include="Lists.h">
+      <Filter>GUI\objects\Lists</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonText.h">
+      <Filter>GUI\objects\button\textButton</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonArrow.h">
+      <Filter>GUI\objects\button\arrowButton</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>GUI\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>Map\TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsSettings.h">
+      <Filter>Source Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>Resource Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="menuHoldList.h">
+      <Filter>GUI\objects\Lists\menuHoldList</Filter>
+    </ClInclude>
+    <ClInclude Include="CarouselListTexture.h">
+      <Filter>GUI\objects\Lists\CarouselList</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerManager.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Obj.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>GUI\objects\windows\PauseMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionMenu.h">
+      <Filter>GUI\objects\windows\OptionMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthComponent.h">
+      <Filter>Component\h</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageComponent.h">
+      <Filter>Component\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Entities\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Entities\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Entities\Enemy</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
