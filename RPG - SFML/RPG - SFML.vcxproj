@@ -24,6 +24,7 @@
     <ProjectGuid>{7398c986-e7a2-44d5-818e-8b8aa0a014c4}</ProjectGuid>
     <RootNamespace>RPGSFML</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>GameEngine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
