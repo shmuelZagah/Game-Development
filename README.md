@@ -104,4 +104,4 @@ This is an active learning/portfolio project exploring engine architecture from 
 
 ## License
 
-No license file is currently included — all rights reserved by default. Add a license (MIT, Apache 2.0, etc.) if you want others to reuse this code.
+No license file is currently included — all rights reserved by default.
