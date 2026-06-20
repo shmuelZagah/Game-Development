@@ -1,264 +1,107 @@
-﻿# 🎮 Game Development Engine
+# 2D Action-RPG Engine (C++ / SFML)
 
-A high-performance 2D game engine built from scratch using C++, featuring a robust component-based architecture designed for modular gameplay development and real-time rendering optimization.
+A custom 2D RPG engine and game built from scratch in C++ using SFML, featuring a component-based entity system, a finite state machine for game flow, a fully custom GUI toolkit, and an in-game tile-based level editor with file save/load support.
 
----
-
-## 🎯 Overview
-
-The **Game Development Engine** is a custom-built 2D game engine developed in C++ with SFML graphics library, focusing on flexible game architecture and efficient resource management. It implements industry-standard game development patterns including a deterministic game loop, component-based entity system, and real-time rendering pipeline. Designed to support interactive and dynamic game environments with built-in UI systems, collision detection, and basic AI pathfinding.
-
-### Key Highlights
-- **Component-Based Architecture**: Flexible entity-component system for decoupled game object behavior
-- **Deterministic Game Loop**: Consistent frame-rate independent gameplay across all hardware
-- **Real-Time Rendering**: Optimized 2D graphics pipeline with SFML integration
-- **Custom UI Engine**: Professional menu and HUD systems for game interfaces
-- **Interactive Environment**: Collision detection and basic AI pathfinding for dynamic gameplay
+No game engine (Unity, Unreal, Godot) was used — rendering, input, animation, physics, AI, and UI are all hand-built on top of SFML's low-level primitives.
 
 ---
 
-## ✨ Core Features
+## Highlights
 
-### 🏗️ Component-Based System
-- **Modular Game Objects**: Create complex entities by composing reusable components
-- **Flexible Behavior Management**: Easy addition/removal of functionality without tight coupling
-- **Resource Pooling**: Efficient memory management through object reuse patterns
-- **Type-Safe Components**: Compile-time component safety using C++ templates
-
-### 🎮 Game Loop & Rendering
-- **Deterministic Game Loop**: Fixed timestep ensures consistent physics and gameplay across all systems
-- **Frame-Rate Independent**: Smooth gameplay regardless of hardware capabilities
-- **Real-Time Rendering**: 2D graphics rendering with SFML
-- **Scene Management**: Multiple scene support with smooth transitions
-
-### 🎨 UI Engine Development
-- **Menu System**: Professional main menu with navigation and state management
-- **HUD Rendering**: Dynamic health bars, scores, and game state displays
-- **Text Rendering**: Custom font system with scalable text rendering
-- **Input Handling**: Responsive keyboard and mouse input management
-
-### 🤖 AI & Physics
-- **Pathfinding Logic**: Basic AI navigation with waypoint-based movement
-- **Collision Detection**: Accurate collision systems for game entities
-- **Physics Simulation**: Basic velocity and acceleration systems
-- **Enemy AI**: Simple state-based enemy behavior patterns
+- **Component-based entity architecture** — entities (`Player`, `Enemy`) are composed from independent components (`MovementComponent`, `AnimationComponent`, `HitboxComponent`, `HealthComponent`, `DamageComponent`, `RotationComponent`) rather than relying on deep inheritance chains.
+- **Predictive combat AI** — enemies don't just chase the player. Before committing to an attack, each enemy runs a physics-based prediction: it calculates its own slide distance under deceleration, projects the player's future position from their current velocity, and checks for a future hitbox collision *and* directional alignment (via dot product) before deciding to strike.
+- **Finite state machine architecture** — `MainMenuState`, `GameState`, `EditorState`, `SettingState`, and `PauseMenu` all derive from a shared `State` base class, managed through a state stack (push/pop) for clean transitions and overlays.
+- **In-game level editor** — a built-in `EditorState` lets you paint tiles across multiple layers directly in the running application, with a texture-sheet picker, grid toggle, and live tile selector — no external tool required.
+- **Generic layer/object manager** — `LayerManager` maintains an ordered stack of any `Obj`-derived element (tilemap, buttons, menus alike) behind a single polymorphic interface (`update`, `render`, `isMouseOver`, `reset`). Input is dispatched top-down through the stack and consumed by the first object that claims it, with everything beneath automatically reset — giving correct UI focus/hit-testing without each state having to manage z-order or input priority by hand. `pushObjToFront` / `pushObjToBack` let states reorder elements at runtime.
+- **Custom binary/text tilemap format** — `TileMap::saveToFile` / `loadFromFile` serialize a full multi-layer grid (`x, y, z` tile data) to disk and back.
+- **Hand-built GUI toolkit** — buttons, dropdowns, carousels, and option menus implemented from scratch (no Dear ImGui or similar), driven by the same render/update loop as the game itself.
+- **Data-driven keybinds** — controls are read from `.ini` config files per state, not hardcoded.
 
 ---
 
-## 🛠️ Technology Stack
+## Tech Stack
 
-| Category | Technologies |
-|----------|---|
-| **Language** | C++ (C++17 Standard) |
-| **Graphics Library** | SFML 2.5+ |
-| **Build System** | Visual Studio 2022 / CMake |
-| **Architecture Pattern** | Component-Based Entity System |
-| **Rendering** | 2D Real-Time Graphics |
-| **Physics** | Custom 2D Physics Simulation |
+| Layer | Technology |
+|---|---|
+| Language | C++ |
+| Graphics / Windowing / Input | [SFML](https://www.sfml-dev.org/) |
+| Build | Visual Studio (`.sln` / `.vcxproj`) |
+| Platform | Windows |
 
 ---
 
-## 🏗️ Architecture
-
-### Component-Based Entity System
-
-The engine uses a flexible ECS (Entity-Component-System) pattern:
+## Architecture Overview
 
 ```
-┌─────────────────────────────────────┐
-│          Game Entity                │
-├─────────────────────────────────────┤
-│  ├─ Movement Component              │
-│  ├─ Animation Component             │
-│  ├─ Hitbox Component                │
-│  ├─ Health & Damage Components      │
-│  └─ And more...                     │
-└─────────────────────────────────────┘
+Game
+ └─ std::stack<State*>          // active state stack (push/pop for menus, pause, etc.)
+     ├─ MainMenuState
+     ├─ GameState
+     │   ├─ Player (Entity)
+     │   ├─ Enemy (Entity)       // predictive combat AI
+     │   └─ TileMap
+     ├─ EditorState
+     │   ├─ LayerManager          // ordered Obj stack: input dispatch + z-order
+     │   │   ├─ TileMap            // paint / save / load
+     │   │   └─ OptionMenu          // layer + texture picker
+     │   └─ PauseMenu
+     └─ SettingState
+
+Entity
+ ├─ MovementComponent
+ ├─ AnimationComponent
+ ├─ HitboxComponent
+ ├─ HealthComponent
+ ├─ DamageComponent
+ └─ RotationComponent
 ```
 
-### Game Loop Architecture
-
-```
-Start Frame
-    ↓
-Input Processing
-    ↓
-Update Logic (Fixed Timestep)
-    ↓
-Collision Detection
-    ↓
-AI/Pathfinding
-    ↓
-Rendering
-    ↓
-End Frame
-```
+Each `State` owns its own input handling, update loop, and render pass, and reports back to the shared `StateData` (window, keybinds, grid size) so new states can be added without touching the core game loop.
 
 ---
 
-## 🎨 Design Patterns & Best Practices
-
-### ✅ Object-Oriented Design
-- **Encapsulation**: Clear component interfaces with hidden implementation
-- **Inheritance Hierarchy**: Base component class with specialized derivatives
-- **Polymorphism**: Virtual methods for component behavior override
-- **Composition over Inheritance**: Entity composition for maximum flexibility
-
-### 🔐 Advanced Features
-- **Component Pooling**: Efficient memory allocation and reuse
-- **Message Passing System**: Decoupled component communication
-- **State Machines**: AI state management for entity behavior
-- **Factory Pattern**: Centralized entity creation and configuration
-
-### 🎯 Performance Optimization
-- **Spatial Partitioning**: Efficient collision detection optimization
-- **Resource Caching**: Pre-loaded assets for faster access
-- **Batch Rendering**: Optimized sprite batch drawing
-- **Update Prioritization**: Selective component update scheduling
-
----
-
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
-- Windows 10/11
-- Visual Studio 2022 or GCC/Clang with CMake
-- SFML 2.5 or higher
-- C++17 compliant compiler
+- Windows
+- Visual Studio (2019 or later recommended)
+- SFML libraries (included under `includes/`)
 
-### Installation
+### Build & Run
+1. Clone the repository.
+2. Open `Game-Development.sln` in Visual Studio.
+3. Build the `RPG - SFML` project (Debug or Release, x86).
+4. Run — the executable expects the `Resources/` and `Config/` folders alongside it (already set up via the project's working directory).
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/shmuelZagah/Game-Development.git
-   cd Game-Development
-   ```
-
-2. **Set up SFML**
-   - Download SFML from https://www.sfml-dev.org/
-   - Link SFML libraries to your project
-   - Include SFML headers in your compilation
-
-3. **Build the project**
-   ```bash
-   # Using Visual Studio
-   Open "Game-Development.sln" and build the solution
-   ```
-
-4. **Run the game**
-   ```bash
-   ./GameEngine
-   ```
+### Controls
+Keybinds are defined per state in `RPG - SFML/Config/*.ini` (e.g. `gameState_Keybinds.ini`, `editorState_Keybinds.ini`) and can be edited without recompiling.
 
 ---
 
-## 📖 Usage Guide
+## Project Structure
 
-### Creating a Game Entity
-
-```cpp
-// Create an entity with components
-Entity player = entityManager.createEntity();
-player.addComponent<TransformComponent>(x, y);
-player.addComponent<SpriteComponent>("player.png");
-player.addComponent<CollisionComponent>(width, height);
-player.addComponent<PlayerControllerComponent>();
 ```
-
-### Implementing Custom Components
-
-```cpp
-class CustomComponent : public Component {
-public:
-    void update(float deltaTime) override {
-        // Custom update logic
-    }
-    
-    void render(sf::RenderWindow& window) override {
-        // Rendering logic
-    }
-};
-```
-
-### Game Loop Integration
-
-```cpp
-while (window.isOpen()) {
-    handleInput();
-    update(deltaTime);
-    detectCollisions();
-    render();
-}
+RPG - SFML/
+├── Config/              # keybind & graphics settings (.ini)
+├── Resources/
+│   ├── Images/           # sprites, backgrounds, UI textures
+│   └── saves/            # serialized tilemaps (.stm)
+├── *Component.*          # entity component system
+├── *State.*               # game states (menu, game, editor, settings, pause)
+├── GUI / Button* / *List* # custom UI widgets
+├── TileMap.* / Tile.*     # map data, rendering, serialization
+├── Player.* / Enemy.*     # gameplay entities
+└── Game.* / State.*       # core loop & state machine
 ```
 
 ---
 
-## 📁 Project Structure
+## Status & Roadmap
 
-```
-Game-Development/
-├── GameEngine/              # Main game project
-│   ├── src/                 # Source files (.cpp)
-│   ├── headers/             # Header files (.h)
-│   ├── assets/              # Game assets (sprites, sounds)
-│   └── main.cpp             # Entry point
-├── includes/                # Shared includes
-├── Game-Development.sln     # Visual Studio solution
-└── README.md
-```
-
-
-## 🚀 Future Enhancements
-
-- **Advanced Physics**: Gravity, velocity damping, and force simulation
-- **Animation System**: Sprite sheet animation and frame-based animation
-- **Sound Engine**: Audio playback and spatial audio integration
-- **Particle System**: Visual effects with particle emitters
-- **Level Editor**: Visual tool for level design
-- **Save/Load System**: Game state persistence
-- **Networking**: Multiplayer support foundation
-- **Mobile Support**: SFML-based mobile game deployment
+This is an active learning/portfolio project exploring engine architecture from first principles. Planned next steps include expanding the AI behavior tree, adding inventory/item systems, and porting the build off the Visual Studio solution toward a cross-platform CMake setup.
 
 ---
 
-## 🏆 Performance Metrics
+## License
 
-- **Target FPS**: 60 FPS (fixed timestep)
-- **Memory Efficient**: Component pooling for optimal allocation
-- **World Rendering**: Grid-based Tilemap system for efficient level management and rendering.
-- **Interaction Logic**: Layer-based hit testing (Z-Ordering) to optimize click detection and ensure accurate UI/entity interaction.
-
----
-
-## 🔒 Code Quality
-
-- **Type-Safe Components**: Template-based component system
-- **Error Handling**: Exception-safe operations with validation
-- **Memory Management**: Smart pointer usage for resource cleanup
-- **Code Documentation**: Comprehensive header documentation
-
----
-
-## 📝 License
-
-This project is provided as-is for educational and commercial purposes.
-
----
-
-## 👤 Author
-
-**Shmuel Zagah**
-
-B.Sc. Computer Science Student | C++ Developer
-
----
-
-## 📧 Contact & Support
-
-For questions, feedback, or collaboration opportunities:
-- **GitHub**: [@shmuelZagah](https://github.com/shmuelZagah)
-- **Issues**: [GitHub Issues](https://github.com/shmuelZagah/Game-Development/issues)
-
----
-
-*Last Updated: April 14, 2026*
+No license file is currently included — all rights reserved by default. Add a license (MIT, Apache 2.0, etc.) if you want others to reuse this code.
