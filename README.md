@@ -6,6 +6,10 @@ No game engine (Unity, Unreal, Godot) was used — rendering, input, animation, 
 
 ---
 
+https://github.com/user-attachments/assets/ecfd14b9-e45b-4c0e-9f8e-4a0265790cc5
+
+---
+
 ## Highlights
 
 - **Component-based entity architecture** — entities (`Player`, `Enemy`) are composed from independent components (`MovementComponent`, `AnimationComponent`, `HitboxComponent`, `HealthComponent`, `DamageComponent`, `RotationComponent`) rather than relying on deep inheritance chains.
